@@ -21,7 +21,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == linuxkit-025000000001
+                    - node.hostname == pc2
         image: hyperledger/fabric-ca:latest
         hostname: ca.org4.example.com
         environment:
@@ -44,7 +44,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == linuxkit-025000000001
+                    - node.hostname == pc2
         image: hyperledger/fabric-couchdb:latest
         hostname: couchdb0_org4
         networks:
@@ -59,7 +59,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == linuxkit-025000000001
+                    - node.hostname == pc2
         image: hyperledger/fabric-couchdb:latest
         hostname: couchdb1_org4
         networks:
