@@ -1,5 +1,5 @@
 #!/bin/bash
-GLOBAL_ENV_LOCATION=$PWD/.env
+GLOBAL_ENV_LOCATION=$PWD/network/.env
 source $GLOBAL_ENV_LOCATION
 
 set -ev

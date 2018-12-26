@@ -21,13 +21,6 @@ Organizations:
             - Host: peer0.org2.example.com
               Port: 7051              
 
-    - &Org3
-        Name: Org3MSP
-        ID: Org3MSP
-        MSPDir: crypto-config/peerOrganizations/org3.example.com/msp
-        AnchorPeers:
-            - Host: peer0.org3.example.com
-              Port: 7051
 Capabilities:
     Global: &ChannelCapabilities
         V1_3: true
@@ -49,7 +42,6 @@ Orderer: &OrdererDefaults
     Addresses:
         - orderer0.example.com:7050
         - orderer1.example.com:7050
-        - orderer2.example.com:7050
 
     BatchTimeout: 2s
     BatchSize:
@@ -82,7 +74,6 @@ Profiles:
                 Organizations:
                     - *Org1
                     - *Org2
-                    - *Org3
     
     MyChannel:
         Consortium: MyConsortium
@@ -91,7 +82,6 @@ Profiles:
             Organizations:
                 - *Org1
                 - *Org2
-                - *Org3
             
             Capabilities:
                 <<: *ApplicationCapabilities
