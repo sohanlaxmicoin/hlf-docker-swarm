@@ -21,14 +21,14 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == pc2
+                    - node.hostname == pc3
         image: hyperledger/fabric-ca:latest
         hostname: ca.org2.example.com
         environment:
             - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
             - FABRIC_CA_SERVER_CA_NAME=ca_org2
             - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org2.example.com-cert.pem
-            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/61595830c221d5d2bc289c574e6eea2108bcdc38c720ec7b362e1181d42984e9_sk
+            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/a9f6650d6b612fde6f5e192a672a096076277c068419e90b7ac8270e707b4daf_sk
         ports:
             - "8054:7054"   
         command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
@@ -44,7 +44,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == pc2
+                    - node.hostname == pc3
         image: hyperledger/fabric-couchdb:latest
         hostname: couchdb0_org2
         networks:
@@ -59,7 +59,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == pc2
+                    - node.hostname == pc3
         image: hyperledger/fabric-couchdb:latest
         hostname: couchdb1_org2
         networks:
