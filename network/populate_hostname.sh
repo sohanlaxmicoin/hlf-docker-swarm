@@ -27,11 +27,11 @@ sed "$FLAG" "s#- FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-c
 
 
 # ORG2
-# ORG2_CA_PATH=$(ls /var/mynetwork/certs/crypto-config/peerOrganizations/org2.example.com/ca/ | grep "_sk")
-# sed "$FLAG" "s/- node.hostname == .*/- node.hostname == $ORG2_HOSTNAME/g" $ORDERER2_COMPOSE_PATH
-# sed "$FLAG" "s/- node.hostname == .*/- node.hostname == $ORG2_HOSTNAME/g" $PEER_ORG2_COMPOSE_PATH
-# sed "$FLAG" "s/- node.hostname == .*/- node.hostname == $ORG2_HOSTNAME/g" $SERVICE_ORG2_COMPOSE_PATH
-# sed "$FLAG" "s#- FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/.*#- FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/$ORG2_CA_PATH#g" $SERVICE_ORG2_COMPOSE_PATH
+ORG2_CA_PATH=$(ls /var/mynetwork/certs/crypto-config/peerOrganizations/org2.example.com/ca/ | grep "_sk")
+sed "$FLAG" "s/- node.hostname == .*/- node.hostname == $ORG2_HOSTNAME/g" $ORDERER2_COMPOSE_PATH
+sed "$FLAG" "s/- node.hostname == .*/- node.hostname == $ORG2_HOSTNAME/g" $PEER_ORG2_COMPOSE_PATH
+sed "$FLAG" "s/- node.hostname == .*/- node.hostname == $ORG2_HOSTNAME/g" $SERVICE_ORG2_COMPOSE_PATH
+sed "$FLAG" "s#- FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/.*#- FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/$ORG2_CA_PATH#g" $SERVICE_ORG2_COMPOSE_PATH
 
 
 

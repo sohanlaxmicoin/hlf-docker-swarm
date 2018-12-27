@@ -8,6 +8,7 @@
 
 source ${PWD}/.env
 export PATH=$PATH:${PWD}/../../bin
+export FABRIC_CFG_PATH=${PWD}
 
 # remove previous crypto material and config transactions
 rm -fr config/*
@@ -22,9 +23,9 @@ if [ "$?" -ne 0 ]; then
   exit 1
 fi
 
-# generate anchor peer transaction
-configtxgen -profile OneOrgChannel -outputAnchorPeersUpdate ./config/Org3MSPanchors.tx -channelID $CHANNEL_NAME -asOrg Org3MSP
+# generate anchor peer for My Channel transaction as ORG3 Org
+configtxgen -printOrg Org3MSP > ./config/org3.json
 if [ "$?" -ne 0 ]; then
-  echo "Failed to generate anchor peer update for Org3MSP..."
+  echo "Failed to generate Org3 config json..."
   exit 1
 fi

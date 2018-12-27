@@ -8,5 +8,4 @@ Organizations:
         AnchorPeers:
             - Host: peer0.org3.example.com
               Port: 7051
-
-
+   
