@@ -1,0 +1,66 @@
+
+version: '3.2'
+
+networks:
+    skcript:
+        external: 
+            name: skcript
+
+services:
+
+    ca_org3:
+        networks:
+            skcript:
+                aliases:
+                    - ca_org3
+        deploy:
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                max_attempts: 3
+            placement:
+                constraints:
+                    - node.hostname == pc2
+        image: hyperledger/fabric-ca:latest
+        hostname: ca.org3.example.com
+        environment:
+            - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+            - FABRIC_CA_SERVER_CA_NAME=ca_org3
+            - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org3.example.com-cert.pem
+            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/d0c43be7663d387ad2b1b119a7e4b5f7981296da4aacbf1f5002af98767095bf_sk
+        ports:
+            - 10054:7054   
+        command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+        volumes:
+            - /var/mynetwork/certs/crypto-config/peerOrganizations/org3.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
+
+    couchdb0_org3:
+        deploy:
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                max_attempts: 3
+            placement:
+                constraints:
+                    - node.hostname == pc2
+        image: hyperledger/fabric-couchdb:latest
+        hostname: couchdb0_org3
+        networks:
+           - skcript
+
+    couchdb1_org3:
+        deploy:
+            replicas: 1
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                max_attempts: 3
+            placement:
+                constraints:
+                    - node.hostname == pc2
+        image: hyperledger/fabric-couchdb:latest
+        hostname: couchdb1_org3
+        networks:
+           - skcript

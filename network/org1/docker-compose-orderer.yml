@@ -21,7 +21,7 @@ services:
         image: hyperledger/fabric-orderer:latest
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer
         command: orderer
-        hostname: orderer0.example.com
+        hostname: orderer1.example.com
         environment:
             - ORDERER_GENERAL_LOGLEVEL=debug
             - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
@@ -43,7 +43,7 @@ services:
             - ORDERER_TLS_CLIENTROOTCAS_FILES=/var/hyperledger/users/Admin@example.com/tls/ca.crt
             - ORDERER_TLS_CLIENTCERT_FILE=/var/hyperledger/users/Admin@example.com/tls/client.crt
             - ORDERER_TLS_CLIENTKEY_FILE=/var/hyperledger/users/Admin@example.com/tls/client.key
-            - ORDERER_HOST=orderer0.example.com
+            - ORDERER_HOST=orderer1.example.com
             - CONFIGTX_ORDERER_ORDERERTYPE=kafka
             - CONFIGTX_ORDERER_KAFKA_BROKERS=[kafka0:9092,kafka1:9092,kafka2:9092,kafka3:9092]
             - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
@@ -56,10 +56,10 @@ services:
           - 7050:7050
         volumes:
             - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/users:/var/hyperledger/users
-            - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/orderers/orderer0.example.com/msp:/var/hyperledger/msp
-            - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/orderers/orderer0.example.com/tls:/var/hyperledger/tls
+            - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/msp:/var/hyperledger/msp
+            - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/tls:/var/hyperledger/tls
             - /var/mynetwork/certs/config/:/var/hyperledger/config
         networks:
           skcript:
             aliases:
-                - orderer0.example.com
+                - orderer1.example.com

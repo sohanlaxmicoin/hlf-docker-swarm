@@ -6,8 +6,8 @@ OrdererOrgs:
     Template:
       Count: 3
     Specs:
-      - Hostname: orderer0
       - Hostname: orderer1
+      - Hostname: orderer2
           
 PeerOrgs:
   - Name: Org1
